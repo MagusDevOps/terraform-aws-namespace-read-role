@@ -10,3 +10,6 @@ output "read_role_arn" {
   value = "${aws_iam_role.read_role.arn}"
 }
 
+output "group_name" {
+  value = "${aws_iam_group.namespace_read_group.name}"
+}

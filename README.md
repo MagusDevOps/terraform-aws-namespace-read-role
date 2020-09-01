@@ -83,3 +83,4 @@ The following outputs are exported:
 
 ### read\_role\_arn
 
+### group\_name
