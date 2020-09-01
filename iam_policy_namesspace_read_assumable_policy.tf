@@ -16,7 +16,10 @@ data "aws_iam_policy_document" "namespace_read_role_assumable_document" {
 
   statement {
     effect    = "Deny"
-    actions   = ["*"]
+    not_actions = [
+      "iam:GetAccountPasswordPolicy",
+      "iam:ChangePassword"
+    ]
     resources = ["*"]
 
     condition {

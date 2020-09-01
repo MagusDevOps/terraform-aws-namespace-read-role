@@ -48,12 +48,13 @@ data "aws_iam_policy_document" "namespace_read_policy_document" {
     ]
 
     resources = [
-      "arn:aws:s3:*:${var.account_id}:${local.prefix}-${local.namespace}/*",
+      "arn:aws:s3:::${local.prefix}-${local.namespace}*",
     ]
   }
 }
 
 resource "aws_iam_policy" "namespace_read_policy" {
-  name   = "${local.policy_path}read-policy"
+  name   = "${local.prefix}-${local.namespace}-read-policy"
+  path   = "${local.policy_path}"
   policy = "${data.aws_iam_policy_document.namespace_read_policy_document.json}"
 }
