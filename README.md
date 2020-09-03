@@ -1,4 +1,15 @@
 # terraform-aws-namespace-read-role
+
+## Usage
+```HCL
+module "namespace-read-role" {
+  source            = "MagusDevOps/namespace-read-role/aws"
+  version           = "x.x.x"
+  account_id        = "${var.account_id}"
+  ...
+}
+```
+
 ## Requirements
 
 No requirements.
