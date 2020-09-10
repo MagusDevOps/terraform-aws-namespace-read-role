@@ -63,6 +63,19 @@ data "aws_iam_policy_document" "namespace_read_policy_document" {
       "arn:aws:s3:::${local.prefix}-${local.namespace}*",
     ]
   }
+
+  statement {
+    sid = "keyspace"
+
+    actions = [
+      "cassandra:Select",
+    ]
+
+    resources = [
+      "arn:aws:cassandra:*:${var.account_id}:/keyspace/${local.prefix}_${local.namespace}/",
+      "arn:aws:cassandra:*:${var.account_id}:/keyspace/${local.prefix}_${local.namespace}/table/*",
+    ]
+  }
 }
 
 resource "aws_iam_policy" "namespace_read_policy" {
