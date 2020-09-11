@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "namespace_read_policy_document" {
+data "aws_iam_policy_document" "namespace_policy_document" {
   statement {
     sid = "Crypto"
 
@@ -78,8 +78,8 @@ data "aws_iam_policy_document" "namespace_read_policy_document" {
   }
 }
 
-resource "aws_iam_policy" "namespace_read_policy" {
+resource "aws_iam_policy" "namespace_policy" {
   name   = "${local.prefix}-${local.namespace}-read-policy"
   path   = "${local.policy_path}"
-  policy = "${data.aws_iam_policy_document.namespace_read_policy_document.json}"
+  policy = "${data.aws_iam_policy_document.namespace_policy_document.json}"
 }

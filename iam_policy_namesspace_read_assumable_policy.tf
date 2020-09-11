@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "namespace_read_role_assumable_document" {
+data "aws_iam_policy_document" "namespace_role_assumable_document" {
   statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
@@ -38,8 +38,8 @@ data "aws_iam_policy_document" "namespace_read_role_assumable_document" {
   }
 }
 
-resource "aws_iam_policy" "read_role_assumable_policy" {
+resource "aws_iam_policy" "role_assumable_policy" {
   name   = "${local.prefix}-${local.namespace}-read-assumable-role"
   path   = "${local.policy_path}"
-  policy = "${data.aws_iam_policy_document.namespace_read_role_assumable_document.json}"
+  policy = "${data.aws_iam_policy_document.namespace_role_assumable_document.json}"
 }

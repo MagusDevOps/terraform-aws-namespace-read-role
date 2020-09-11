@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "read_role_document" {
+data "aws_iam_policy_document" "role_document" {
   statement {
     actions = ["sts:AssumeRole"]
 
@@ -12,18 +12,18 @@ data "aws_iam_policy_document" "read_role_document" {
   }
 }
 
-resource "aws_iam_role" "read_role" {
+resource "aws_iam_role" "role" {
   name               = "${local.prefix}-${var.namespace}-read-role"
-  assume_role_policy = "${data.aws_iam_policy_document.read_role_document.json}"
+  assume_role_policy = "${data.aws_iam_policy_document.role_document.json}"
   tags               = "${local.tags}"
 }
 
-resource "aws_iam_role_policy_attachment" "attach_read_policy" {
-  policy_arn = "${aws_iam_policy.namespace_read_policy.arn}"
-  role       = "${aws_iam_role.read_role.name}"
+resource "aws_iam_role_policy_attachment" "attach_policy" {
+  policy_arn = "${aws_iam_policy.namespace_policy.arn}"
+  role       = "${aws_iam_role.role.name}"
 }
 
 resource "aws_iam_role_policy_attachment" "attach_readonly_policy" {
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
-  role       = "${aws_iam_role.read_role.name}"
+  role       = "${aws_iam_role.role.name}"
 }
